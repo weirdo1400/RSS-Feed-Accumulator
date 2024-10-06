@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Articles() {
+function Sport() {
   return (
     <div>
-      
+      Sport
     </div>
   )
 }
 
-export default Articles
+export default Sport
