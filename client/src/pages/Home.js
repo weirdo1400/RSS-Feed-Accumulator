@@ -1,6 +1,5 @@
-import React from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 function Home() {
@@ -10,20 +9,29 @@ function Home() {
   useEffect(() => {
     axios.get("http://localhost:3001/articles").then((response) => {
       setListOfArticles(response.data);
+      console.log("response.data")
+      console.log(response.data);
     });
   }, []);
 
-  return (
-    <div>
-      {listOfArticles.map((value, key) => {
-        <div key={key} className="article">
-          <div className="title"> {value.title}</div>
-          <div className="body"> {value.link}</div>
-        </div>;
-      })}
-      ;
-    </div>
-  );
+    // Optional: use this to log the updated state whenever it changes
+    useEffect(() => {
+      console.log("listOfArticles")
+      console.log(listOfArticles);
+    }, [listOfArticles]);
+
+    return (
+      <div>
+        {listOfArticles.map((value, key) => (
+          <div 
+            key={key} 
+            className="article">
+            <div className="title"> {value.articletitle}</div>
+            <div className="body"> {value.articlelink}</div>
+          </div>
+        ))}
+      </div>
+    );
 }
 
 export default Home;

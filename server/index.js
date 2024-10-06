@@ -8,10 +8,10 @@ app.use(cors()); // make requests from same device
 app.use(express.json());
 
 // Routers
-const feedRouter = require('./routes/Feeds');
-app.use('/feeds', feedRouter);
-const articleRouter = require('./routes/Articles');
-app.use('/articles', articleRouter);
+const feedRouter = require("./routes/Feeds");
+app.use("/feeds", feedRouter);
+const articleRouter = require("./routes/Articles");
+app.use("/articles", articleRouter);
 
 db.sequelize.sync().then(() => {
     app.listen(port, () => {

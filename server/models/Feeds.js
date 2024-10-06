@@ -14,11 +14,5 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
     });
-
-    Feeds.associate = (models) => {
-        Feeds.hasMany(models.Articles, {
-            onDelete: "cascade",
-        });
-    };
     return Feeds;
 };
