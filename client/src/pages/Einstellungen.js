@@ -1,22 +1,60 @@
-import React, { useState } from "react";
+import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import axios from "axios";
+import * as Yup from "yup";
 
 function Einstellungen() {
-  const [rssLink, setRssLink] = useState("");
+  const initialValues = {
+    feedlink: "",
+    feedcategory: "",
+  };
 
-  const add = () => {
-    console.log("Add");
-    console.log(rssLink);
+  const validationSchema = Yup.object().shape({
+    feedlink: Yup.string().required("Feed link is required"),
+    feedcategory: Yup.string().required("Feed category is required"),
+  });
+
+  const add = (data) => {
+    axios.post("http://localhost:3001/feeds", data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => {
+      console.log("Feed added:", response.data);
+    }).catch((error) => {
+      console.error("Error adding feed:", error);
+    });
   };
 
   return (
-    <div className="feedContainer">
-      <label>RSS-Feed-Link</label>
-      <input
-        type="text"
-        onChange={(event) => setRssLink(event.target.value)}
-        placeholder="Enter RSS Feed URL"
-      />
-      <button onClick={add}>Add Link</button>
+    <div>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={add}
+        validationSchema={validationSchema}
+      >
+        <Form className="formContainer">
+          <label>Link:</label>
+          <ErrorMessage name="feedlink" component="span" />
+          <Field
+            autoComplete="off"
+            id="inputAddLink"
+            name="feedlink"
+            placeholder="(Ex. https://www...)"
+          />
+
+          <label>Kategorie:</label>
+          <ErrorMessage name="feedcategory" component="span" />
+          <Field
+            autoComplete="off"
+            id="inputAddCategory"
+            name="feedcategory"
+            placeholder="(Ex. News)"
+          />
+
+          <button type="submit">Link hinzufügen</button>
+        </Form>
+      </Formik>
     </div>
   );
 }
