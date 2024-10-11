@@ -9,6 +9,15 @@ router.get("/", async (req, res) => {
     res.json(listOfFeeds);
 });
 
+router.get("/news", async (req, res) => {
+  const listOfFeeds = await Feeds.findAll({
+    where: {
+      feedcategory: "News",
+    },
+  });
+  res.json(listOfFeeds);
+});
+
 router.post("/", async (req, res) => {
   const { feedlink, feedcategory } = req.body;
   
