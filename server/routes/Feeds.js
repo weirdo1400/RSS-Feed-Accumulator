@@ -18,6 +18,25 @@ router.get("/news", async (req, res) => {
   res.json(listOfFeeds);
 });
 
+router.get("/sport", async (req, res) => {
+  const listOfFeeds = await Feeds.findAll({
+    where: {
+      feedcategory: "Sport",
+    },
+  });
+  res.json(listOfFeeds);
+});
+
+router.get("/wissenschaft", async (req, res) => {
+  const listOfFeeds = await Feeds.findAll({
+    where: {
+      feedcategory: "Wissenschaft",
+    },
+  });
+  res.json(listOfFeeds);
+});
+
+
 router.post("/", async (req, res) => {
   const { feedlink, feedcategory } = req.body;
   

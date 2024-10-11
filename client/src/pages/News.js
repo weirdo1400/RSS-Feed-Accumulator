@@ -63,7 +63,7 @@ function News() {
 
   return (
     <div>
-      <h1>RSS Feed</h1>
+      <h1>News Feed</h1>
       <ul>
         {feeds.map((item, index) => (
           <li key={index}>

@@ -1,28 +1,38 @@
 import axios from "axios";
-import { useEffect, useState } from 'react';
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React,{ useEffect, useState } from 'react';
 const convert = require("xml-js");
 
 function Home() {
-  const [feed, setFeed] = useState([]);
+  const [feed, setFeeds] = useState([]);
 
   useEffect(() => {
-    const fetchFeed = async () => {
+    const fetchFeedLinks = async () => {
       try {
-        const response = await axios.get(
-          "https://www.srf.ch/news/bnf/rss/1646",
-          {}
-        );
+        const response = await axios.get("http://localhost:3001/feeds");
+        const feedLinks = response.data.map((feed) => feed.feedlink);  // Get all feed links
+        console.log("Feed Links:", feedLinks);
+
+        // Fetch all RSS feeds for each feed link
+        for (const feedLink of feedLinks) {
+          fetchFeed(feedLink);  // Fetch the feed for each link
+        }
+      } catch (error) {
+        console.error("Error fetching feed links:", error);
+      }
+    };
+
+    const fetchFeed = async (feedLink) => {
+      try {
+        if (!feedLink) return;  // Ensure feedLink is available before making the request
+        const response = await axios.get(feedLink);
         console.log(response.data);
-        console.log("Conversion");
 
         // Convert XML to JSON string
         const converted = convert.xml2json(response.data, {
           compact: true,
           spaces: 2,
         });
-        console.log(converted);
+        console.log("Converted Feed:", converted);
 
         // Parse the JSON string into a JavaScript object
         const jsonResult = JSON.parse(converted);
@@ -33,14 +43,6 @@ function Home() {
           throw new Error("Channel data is missing in the feed.");
         }
 
-        // Access the first title and link
-        const firstItem = Array.isArray(channel.item) ? channel.item[0] : channel.item;
-        const firstTitle = firstItem?.title?._text || "No title"; // Accessing the title
-        const firstLink = firstItem?.link?._text || "No link";  // Accessing the link
-
-        console.log("Title:", firstTitle); // Logs the first title
-        console.log("Link:", firstLink);   // Logs the first link
-
         // Extract titles and links from the JSON
         const items = Array.isArray(channel.item) ? channel.item : [channel.item];
         const feedItems = items.map((item) => ({
@@ -48,17 +50,20 @@ function Home() {
           link: item.link?._text || "No link",
         }));
 
-        setFeed(feedItems);
+        // Update state with the new feed items (append)
+        setFeeds((prevFeeds) => [...prevFeeds, ...feedItems]);
       } catch (error) {
         console.error("Error fetching the RSS feed:", error);
       }
     };
-    fetchFeed();
+
+    // Fetch the list of feed links first
+    fetchFeedLinks();
   }, []);
 
   return (
     <div>
-      <h1>RSS Feed</h1>
+      <h1>RSS Feed All</h1>
       <ul>
         {feed.map((item, index) => (
           <li key={index}>
