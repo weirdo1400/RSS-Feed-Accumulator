@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import * as Yup from "yup";
+import Dropdown from "../components/Dropdown/Dropdown";
 
 function Einstellungen() {
   const initialValues = {
@@ -28,7 +29,15 @@ function Einstellungen() {
 
   return (
     <div>
-      <Formik
+      
+      <Dropdown/>
+    </div>
+  );
+}
+
+export default Einstellungen;
+
+/*<Formik
         initialValues={initialValues}
         onSubmit={add}
         validationSchema={validationSchema}
@@ -54,9 +63,4 @@ function Einstellungen() {
 
           <button type="submit">Link hinzufügen</button>
         </Form>
-      </Formik>
-    </div>
-  );
-}
-
-export default Einstellungen;
+      </Formik>*/
