@@ -63,9 +63,21 @@
     cursor: pointer;
     transition: background 0.3s ease;
     margin: 0 auto;
+    margin-top: 20px;
   }
   
   .submit-btn:hover {
     background-color: #34495e;
+  }
+
+  .error-message {
+    color: red;
+    text-align: left; /* Align label text to the left */
+    display: block;
+    width: 100%; /* Ensure labels take full width */
+    max-width: 400px; /* Align with input fields and dropdown */
+    margin: 0 auto 5px auto; /* Center labels and add spacing below */
+    text-align: left; /* Align label text to the left */
+    margin-top: 5px;
   }
   

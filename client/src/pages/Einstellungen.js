@@ -57,17 +57,18 @@ function Einstellungen() {
             {/* Input field */}
             <div className="form-group">
               <label htmlFor="feedlink">Link:</label>
-              <ErrorMessage
-                name="feedlink"
-                component="span"
-                className="error-message"
-              />
+
               <Field
                 autoComplete="off"
                 id="inputAddLink"
                 name="feedlink"
                 placeholder="(Ex. https://www...)"
                 className="input-field"
+              />
+              <ErrorMessage
+                name="feedlink"
+                component="span"
+                className="error-message"
               />
             </div>
 
