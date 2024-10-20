@@ -1,0 +1,70 @@
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 200px;
+    position: relative;
+    border: 1px solid #aaa; /* Added border around the dropdown */
+    border-radius: 5px;
+    align-self: center;
+    background-color: #f9f9f9; /* Light background */
+    font-family: Arial, sans-serif; /* Ensure consistent font */
+}
+
+.dropdown .toggle {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px; /* Increase padding for better clickability */
+    border: none;
+    background-color: #eee;
+    cursor: pointer;
+    transition: background-color 0.2s ease; /* Slightly slower transition for a smooth effect */
+    font-size: 14px; /* Slightly larger font */
+    color: #333; /* Darker font color for readability */
+    border-radius: 5px; /* Rounded edges */
+}
+
+.dropdown .toggle:hover {
+    background-color: #ddd; /* Darker on hover */
+}
+
+.dropdown .options {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 1; /* Ensure the options appear on top */
+    border: 1px solid #aaa; /* Border around options list */
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Same background as toggle */
+}
+
+.dropdown .options.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown .options button {
+    display: flex;
+    justify-content: flex-start; /* Align text to the start */
+    padding: 10px; /* Match toggle button padding */
+    border: none;
+    background-color: #eee;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    font-size: 14px; /* Consistent font size */
+    color: #333;
+}
+
+.dropdown .options button.selected {
+    background-color: #ddd;
+    cursor: default; /* Disable hover when selected */
+}
+
+.dropdown .options button:hover:not(.selected) {
+    background-color: #ccc;
+}

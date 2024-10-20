@@ -27,10 +27,28 @@ router.get("/sport", async (req, res) => {
   res.json(listOfFeeds);
 });
 
-router.get("/wissenschaft", async (req, res) => {
+router.get("/astronomie", async (req, res) => {
   const listOfFeeds = await Feeds.findAll({
     where: {
-      feedcategory: "Wissenschaft",
+      feedcategory: "Astronomie",
+    },
+  });
+  res.json(listOfFeeds);
+});
+
+router.get("/technik", async (req, res) => {
+  const listOfFeeds = await Feeds.findAll({
+    where: {
+      feedcategory: "Technik",
+    },
+  });
+  res.json(listOfFeeds);
+});
+
+router.get("/spanisch", async (req, res) => {
+  const listOfFeeds = await Feeds.findAll({
+    where: {
+      feedcategory: "Spanisch",
     },
   });
   res.json(listOfFeeds);
