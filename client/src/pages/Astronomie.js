@@ -67,7 +67,7 @@ function Astronomie() {
       <ul>
         {feeds.map((item, index) => (
           <li key={index}>
-            <a href={item.link}>{item.title}</a>
+            <a href={item.link} target="_blank" rel="noopener noreferrer">{item.title}</a>
           </li>
         ))}
       </ul>
