@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 const convert = require("xml-js");
 
-function Wissenschaft() {
+function Astronomie() {
   const [feeds, setFeeds] = useState([]);
 
   useEffect(() => {
     const fetchFeedLinks = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/feeds/wissenschaft");
+        const response = await axios.get("http://localhost:3001/feeds/astronomie");
         const feedLinks = response.data.map((feed) => feed.feedlink);  // Get all feed links
         console.log("Feed Links:", feedLinks);
 
@@ -63,7 +63,7 @@ function Wissenschaft() {
 
   return (
     <div>
-      <h1>Wissenschaft Feed</h1>
+      <h1>Astronomie Feed</h1>
       <ul>
         {feeds.map((item, index) => (
           <li key={index}>
@@ -75,4 +75,4 @@ function Wissenschaft() {
   );
 }
 
-export default Wissenschaft
+export default Astronomie
