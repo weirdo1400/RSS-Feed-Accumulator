@@ -7,6 +7,8 @@ import "./Einstellungen.css";
 
 function Einstellungen() {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [resetDropdown, setResetDropdown] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false); // State to control success message visibility
   const initialValues = {
     feedlink: "",
   };
@@ -23,6 +25,7 @@ function Einstellungen() {
     console.log("Form Data:", data);
     console.log("Selected Category:", selectedCategory);
     console.log("Combined data:", combinedData);
+    setResetDropdown(true); // Trigger reset of the dropdown menu
 
     // Simulate API request
     axios
@@ -39,16 +42,26 @@ function Einstellungen() {
       });
   };
 
+  const showSuccessMessage = () => {
+    setShowSuccess(true); // Show success message
+    // Hide success message after 3 seconds
+    setTimeout(() => {
+      setShowSuccess(false); // Hide success message
+    }, 3000);
+  };
+
   return (
     <div className="einstellungen-container">
       <h1>Einstellungen</h1>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => {
+        onSubmit={(values, { resetForm }) => {
           if (!selectedCategory) {
             return; // Prevent submission if category is not selected
           }
           add(values);
+          resetForm();
+          showSuccessMessage();
         }}
         validationSchema={validationSchema}
       >
@@ -57,7 +70,6 @@ function Einstellungen() {
             {/* Input field */}
             <div className="form-group">
               <label htmlFor="feedlink">Link:</label>
-
               <Field
                 autoComplete="off"
                 id="inputAddLink"
@@ -70,12 +82,23 @@ function Einstellungen() {
                 component="span"
                 className="error-message"
               />
+              <span
+                id="success-message"
+                className={`success-message ${
+                  showSuccess ? "visible" : "hidden"
+                }`}
+              >
+                Submission success!
+              </span>{" "}
             </div>
 
             {/* Dropdown field */}
             <div className="form-group">
               <label htmlFor="category">Kategorie:</label>
-              <Dropdown setSelectedCategory={setSelectedCategory} />
+              <Dropdown
+                setSelectedCategory={setSelectedCategory}
+                reset={resetDropdown}
+              />
               {!selectedCategory && touched.feedlink && (
                 <span className="error-message">
                   Bitte wählen Sie eine Kategorie aus.

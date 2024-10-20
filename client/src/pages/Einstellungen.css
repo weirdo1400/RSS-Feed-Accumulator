@@ -77,7 +77,27 @@
     width: 100%; /* Ensure labels take full width */
     max-width: 400px; /* Align with input fields and dropdown */
     margin: 0 auto 5px auto; /* Center labels and add spacing below */
-    text-align: left; /* Align label text to the left */
     margin-top: 5px;
   }
+
+  .success-message {
+    visibility: hidden; /* Initially hidden */
+    transition: visibility 0.3s ease-in-out; /* Smooth transition */
+    text-align: left; /* Align label text to the left */
+    margin: 0 auto 5px auto; /* Center labels and add spacing below */
+    color: green;
+    width: 100%; /* Ensure labels take full width */
+    max-width: 400px; /* Align with input fields and dropdown */
+    margin: 0 auto 5px auto; /* Center labels and add spacing below */
+    margin-top: 5px;
+  }
+  
+  .success-message.visible {
+    visibility: visible;
+  }
+  
+  .success-message.hidden {
+    visibility: hidden;
+  }
+  
   

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Dropdown.css";
 
-const Dropdown = ({setSelectedCategory}) => {
+const Dropdown = ({setSelectedCategory, reset}) => {
   const [dropdownToggled, setDropdownToggled] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const dropDownRef = useRef(null);
@@ -17,6 +17,12 @@ const Dropdown = ({setSelectedCategory}) => {
       document.removeEventListener("click", handler);
     };
   }, []); // Add an empty dependency array to only add/remove the event listener on mount/unmount
+
+  useEffect(() => {
+    if (reset) {
+      setSelectedCategory(null);
+    }
+  }, [reset]);
 
   const dropdownOptions = [
     { id: 1, label: "News", value: "News" },
