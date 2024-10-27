@@ -8,7 +8,7 @@ function Technik() {
   useEffect(() => {
     const fetchFeedLinks = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/feeds/technik");
+        const response = await axios.get("http://localhost:3307/feeds/technik");
         const feedLinks = response.data.map((feed) => feed.feedlink);  // Get all feed links
         console.log("Feed Links:", feedLinks);
 

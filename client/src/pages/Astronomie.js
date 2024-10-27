@@ -8,7 +8,7 @@ function Astronomie() {
   useEffect(() => {
     const fetchFeedLinks = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/feeds/astronomie");
+        const response = await axios.get("http://localhost:3307/feeds/astronomie");
         const feedLinks = response.data.map((feed) => feed.feedlink);  // Get all feed links
         console.log("Feed Links:", feedLinks);
 
