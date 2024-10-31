@@ -1,5 +1,3 @@
-node_modules
-
 # Logs
 logs
 *.log
@@ -39,3 +37,7 @@ typings/
 # Database config files
 config/
 .env
+
+# Remove all node_modules
+node_modules
+package-lock.json

@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const db = require("./models");
-//import sequelize from './models/index.js';
+require("dotenv").config();
 
 app.use(cors()); // make requests from same device
 app.use(express.json());
@@ -20,8 +20,8 @@ db.sequelize
   .sync()
   .then(() => {
     console.log("await");
-    app.listen(3307, () => {
-      console.log(`Server running on port ${3307}`);
+    app.listen(process.env.DB_PORT, () => {
+      console.log(`Server running on port ${process.env.DB_PORT}`);
     });
   })
   .catch((error) => {
