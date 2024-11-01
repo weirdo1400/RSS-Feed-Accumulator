@@ -29,7 +29,7 @@ function Einstellungen() {
 
     // Simulate API request
     axios
-      .post("http://localhost:3307/feeds", combinedData, {
+      .post("https://rss-feed-accumulator.onrender.com/feeds", combinedData, {
         headers: {
           "Content-Type": "application/json",
         },

@@ -8,7 +8,7 @@ function News() {
   useEffect(() => {
     const fetchFeedLinks = async () => {
       try {
-        const response = await axios.get("http://localhost:3307/feeds/news");
+        const response = await axios.get("https://rss-feed-accumulator.onrender.com/feeds/news");
         const feedLinks = response.data.map((feed) => feed.feedlink);  // Get all feed links
         console.log("Feed Links:", feedLinks);
 

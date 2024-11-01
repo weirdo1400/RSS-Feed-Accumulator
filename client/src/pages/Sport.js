@@ -8,7 +8,7 @@ function Sport() {
   useEffect(() => {
     const fetchFeedLinks = async () => {
       try {
-        const response = await axios.get("http://localhost:3307/feeds/sport");
+        const response = await axios.get("https://rss-feed-accumulator.onrender.com/feeds/sport");
         const feedLinks = response.data.map((feed) => feed.feedlink);  // Get all feed links
         console.log("Feed Links:", feedLinks);
 
