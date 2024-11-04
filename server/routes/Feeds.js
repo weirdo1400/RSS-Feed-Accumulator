@@ -99,9 +99,9 @@ router.post("/", async (req, res) => {
       res.status(500).json({ error: "Failed to fetch and parse the feed." });
   }
 });
-
 /*
 router.post("/", async (req, res) => {
+    console.log("tried")
     const feedlink = "feeasdfdlink"
     const feed = {
         feedlink: feedlink,
@@ -111,7 +111,7 @@ router.post("/", async (req, res) => {
     //const feed = req.body;
     await Feeds.create(feed);
     res.json(feed);
-});
-*/
+});*/
+
 
 module.exports = router;

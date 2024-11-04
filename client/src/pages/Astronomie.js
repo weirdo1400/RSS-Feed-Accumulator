@@ -8,7 +8,7 @@ function Astronomie() {
   useEffect(() => {
     const fetchFeedLinks = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/feeds/astronomie");
+        const response = await axios.get("https://rss-feed-accumulator.onrender.com/feeds/astronomie");
         const feedLinks = response.data.map((feed) => feed.feedlink);  // Get all feed links
         console.log("Feed Links:", feedLinks);
 
@@ -67,7 +67,7 @@ function Astronomie() {
       <ul>
         {feeds.map((item, index) => (
           <li key={index}>
-            <a href={item.link}>{item.title}</a>
+            <a href={item.link} target="_blank" rel="noopener noreferrer">{item.title}</a>
           </li>
         ))}
       </ul>
